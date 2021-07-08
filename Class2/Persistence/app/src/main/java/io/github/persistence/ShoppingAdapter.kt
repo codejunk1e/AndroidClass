@@ -5,15 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.github.persistence.databinding.ShoppingItemBinding
 
-class ShoppingAdapter(val shoppingItems: List<ShoppingModel>)
-    : RecyclerView.Adapter<ShoppingAdapter.ViewHolder>() {
+class ShoppingAdapter(
+    val shoppingItems: List<ShoppingModel>
+    ) : RecyclerView.Adapter<ShoppingAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: ShoppingItemBinding)
+    inner class ViewHolder(val binding: ShoppingItemBinding)
         :RecyclerView.ViewHolder(binding.root){
 
         fun bind(shoppingItem :ShoppingModel){
             binding.category.text = shoppingItem.category
             binding.description.text = shoppingItem.description
+            binding.root.setOnClickListener {}
         }
     }
 
@@ -24,7 +26,7 @@ class ShoppingAdapter(val shoppingItems: List<ShoppingModel>)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int): Unit {
         holder.bind(shoppingItems.get(position))
     }
     override fun getItemCount() = shoppingItems.size
