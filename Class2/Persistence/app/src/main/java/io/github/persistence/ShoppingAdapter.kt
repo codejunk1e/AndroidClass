@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.persistence.databinding.ShoppingItemBinding
 
 class ShoppingAdapter(
-    val shoppingItems: List<ShoppingModel>
+    val shoppingItems: List<ShoppingModel>,
+    val clickerFnx: (ShoppingModel) -> Unit
     ) : RecyclerView.Adapter<ShoppingAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ShoppingItemBinding)
@@ -15,7 +16,9 @@ class ShoppingAdapter(
         fun bind(shoppingItem :ShoppingModel){
             binding.category.text = shoppingItem.category
             binding.description.text = shoppingItem.description
-            binding.root.setOnClickListener {}
+            binding.root.setOnClickListener {
+                clickerFnx(shoppingItem)
+            }
         }
     }
 
